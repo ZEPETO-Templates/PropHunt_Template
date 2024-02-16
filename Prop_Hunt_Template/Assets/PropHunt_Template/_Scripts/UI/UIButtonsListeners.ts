@@ -17,6 +17,7 @@ export default class UIButtonsListeners extends ZepetoScriptBehaviour {
 
     @SerializeField() private releaseButton: Button;
     @SerializeField() private transformButton: Button;
+    @SerializeField() private sliderRotation: GameObject; 
 
     private buttonTransformed: UITransformableButton;
 
@@ -58,6 +59,7 @@ export default class UIButtonsListeners extends ZepetoScriptBehaviour {
             if (this.buttonTransformed) this.buttonTransformed.SetDefault();
             UIManager.instance.ResetPropSelectedButton();
             TransformableItemsManager.instance.TransformLocalPlayer("");
+            this.sliderRotation.SetActive(false);
         });
 
         this.transformButton.onClick.AddListener(() => {
@@ -68,6 +70,7 @@ export default class UIButtonsListeners extends ZepetoScriptBehaviour {
 
                 // Call to the function to transform the player from the TransformableItemsManager
                 TransformableItemsManager.instance.TransformLocalPlayer(UIManager.instance.buttonSelected._myItemTransformable.itemId);
+                this.sliderRotation.SetActive(true);
             }
         });
     }
@@ -79,5 +82,6 @@ export default class UIButtonsListeners extends ZepetoScriptBehaviour {
         // Set the ready btn in the default state
         this.readyBtn_Pressed.SetActive(false);
         this.readyBtn_NonPressed.SetActive(true);
+        this.sliderRotation.SetActive(false);
     }
 }

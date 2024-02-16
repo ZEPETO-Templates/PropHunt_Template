@@ -29,6 +29,8 @@ export default class UIManager extends ZepetoScriptBehaviour {
     @SerializeField() private nonHunterCanvas: GameObject; // Reference to the non hunter canvas
     @SerializeField() private btnpropList: Button; // Reference to the prop list button
     @SerializeField() private propList: GameObject; // Reference to the prop list
+    @SerializeField() private showPropList: GameObject; // Reference to the Arrow_Button Show
+    @SerializeField() private hidePropList: GameObject; // Reference to the Arrow_Button Hide
     public sliderRot: Slider; // Reference to the slider to rotate the object
     private showingProps: bool = false;
 
@@ -220,6 +222,19 @@ export default class UIManager extends ZepetoScriptBehaviour {
             this.rectPropList.position = newPosition;
             // Check if the counter is greater than the max counter stop the loop
             if (counter > maxCounter) return;
+
+            if (show)
+            {
+                // Show the showPropList GameObject and hide the hidePropList GameObject
+                this.showPropList.SetActive(true);
+                this.hidePropList.SetActive(false);
+            }
+            else
+            {
+                // Show the hidePropList GameObject and hide the showPropList GameObject
+                this.hidePropList.SetActive(true);
+                this.showPropList.SetActive(false);
+            }
         }
     }
 
